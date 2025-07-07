@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft } from 'lucide-react';
@@ -43,8 +43,8 @@ const Cart = () => {
     return (
       <div className="min-h-screen py-8">
         <Helmet>
-          <title>Carrinho - Bella Jóias</title>
-          <meta name="description" content="Seu carrinho de compras na Bella Jóias" />
+          <title>Carrinho - Natal Acessórios</title>
+          <meta name="description" content="Seu carrinho de compras na Natal Acessórios" />
         </Helmet>
 
         <div className="container mx-auto px-4">
@@ -60,7 +60,7 @@ const Cart = () => {
             <p className="text-xl text-gray-600 mb-8 max-w-md mx-auto">
               Que tal explorar nossa coleção e encontrar peças incríveis?
             </p>
-            <Link to="/produtos">
+            <Link href="/produtos">
               <Button size="lg" className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-8 py-4">
                 <ShoppingBag className="h-5 w-5 mr-2" />
                 Explorar Produtos
@@ -86,7 +86,7 @@ const Cart = () => {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <Link to="/produtos">
+          <Link href="/produtos">
             <Button variant="ghost" className="text-gray-600 hover:text-pink-600 mb-4">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Continuar Comprando
@@ -141,7 +141,7 @@ const Cart = () => {
                     <div className="flex flex-col sm:flex-row justify-between items-start gap-2">
                       <div>
                         <Link
-                          to={`/produto/${item.id}`}
+                          href={`/produto/${item.id}`}
                           className="text-lg font-semibold text-gray-800 hover:text-pink-600 transition-colors"
                         >
                           {item.name}
@@ -237,7 +237,7 @@ const Cart = () => {
                 </div>
               )}
 
-              <Link to="/checkout" className="block">
+              <Link href="/checkout" className="block">
                 <Button
                   size="lg"
                   className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white py-4 text-lg"
@@ -247,7 +247,7 @@ const Cart = () => {
               </Link>
 
               <div className="mt-4 text-center">
-                <Link to="/produtos">
+                <Link href="/produtos">
                   <Button variant="ghost" className="text-pink-600 hover:text-pink-700">
                     Continuar Comprando
                   </Button>

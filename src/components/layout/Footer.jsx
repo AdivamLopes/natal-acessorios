@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Instagram, Facebook, Twitter, Mail, Phone, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
+import SSLBadge from './components/SSLBadge';
 
 const Footer = () => {
   const handleFeatureClick = () => {
@@ -78,6 +79,8 @@ const Footer = () => {
             <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" className="h-6"/>
             <img src="https://img.icons8.com/color/48/mastercard-logo.png" alt="Mastercard" className="h-6"/>
             <img src="https://img.icons8.com/color/48/pix.png" alt="PIX" className="h-6"/>
+            <div className="h-6 w-px bg-tan/30 mx-2"></div>
+            <SSLBadge />
           </div>
         </div>
       </div>

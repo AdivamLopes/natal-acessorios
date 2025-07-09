@@ -5,9 +5,8 @@ import { Helmet } from 'react-helmet';
 import { ArrowLeft, Heart, Share2, Star, Shield, Truck, Gem, XCircle, Ruler, Weight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/contexts/CartContext';
-import { getProductById, getRelatedProducts } from '@/data/api';
 import { toast } from '@/components/ui/use-toast';
-import ProductCard from '@/components/ProductCard';
+import ProductCard from '@/components/ecommerce/ProductCard';
 import { Skeleton } from '@/components/ui/skeleton';
 import ProductCardSkeleton from '@/components/ProductCardSkeleton';
 

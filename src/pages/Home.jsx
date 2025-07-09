@@ -6,7 +6,7 @@ import { ArrowRight, Shield, Truck, Gem, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ProductCard from '../components/ecommerce/ProductCard';
 import ProductCardSkeleton from '@/components/ProductCardSkeleton';
-import { getFeaturedProducts } from '../data/product';
+import { getFeaturedProducts } from '../data/products';
 import Hero from '@/components/Hero';
 import ProductCarousel from '@/components/ProductCarousel';
 import Testimonials from '@/components/Testimonials';

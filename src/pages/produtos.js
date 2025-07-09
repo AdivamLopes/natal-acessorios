@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { client } from '../lib/sanity'
 import { PRODUCTS_QUERY, CATEGORIES_QUERY } from '../lib/queries'
-import ProductCard from '../components/ProductCard'
+import ProductCard from '../components/ecommerce/ProductCard'
 
 export default function ProdutosPage({ products, categories }) {
     const [filteredProducts, setFilteredProducts] = useState(products)

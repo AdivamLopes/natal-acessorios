@@ -1,6 +1,4 @@
-import Image from 'next/image'
 import Link from 'next/link'
-import { urlFor } from '../lib/sanity'
 
 export default function ProductCard({ product }) {
     const formatPrice = (price) => {
@@ -17,8 +15,8 @@ export default function ProductCard({ product }) {
             <Link href={`/produto/${product.slug.current}`}>
                 <div className="relative aspect-square">
                     {product.images && product.images[0] && (
-                        <Image
-                            src={urlFor(product.images[0]).width(400).height(400).url()}
+                        <img
+                            src={product.images?.[0]}
                             alt={product.name}
                             fill
                             className="object-cover"

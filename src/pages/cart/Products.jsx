@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import { Filter, Grid, List, SlidersHorizontal, X as XIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import ProductCard from '@/components/ProductCard';
+import ProductCard from '@/components/ecommerce/ProductCard';
 import ProductCardSkeleton from '@/components/ProductCardSkeleton';
 import { getAllProducts, searchProducts } from '@/data/api';
 import { toast } from '@/components/ui/use-toast';

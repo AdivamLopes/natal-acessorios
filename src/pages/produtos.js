@@ -9,11 +9,11 @@ export default function ProdutosPage({ products, categories }) {
     const [sortBy, setSortBy] = useState('newest')
 
     const filterAndSortProducts = () => {
-        let filtered = products
+        let filtered = [...products]
 
-        // Filtrar por categoria
+        // Filtrar por categoria (ajustado para Sanity)
         if (selectedCategory) {
-            filtered = filtered.filter(product => product.category === selectedCategory)
+            filtered = filtered.filter(product => product.category?.name === selectedCategory)
         }
 
         // Ordenar
@@ -28,7 +28,7 @@ export default function ProdutosPage({ products, categories }) {
                 filtered.sort((a, b) => a.name.localeCompare(b.name))
                 break
             default: // newest
-                // Já vem ordenado por data de criação
+                // já vem ordenado por data de criação
                 break
         }
 
@@ -101,6 +101,6 @@ export async function getStaticProps() {
             products,
             categories,
         },
-        revalidate: 60, // Revalidar a cada 60 segundos
+        revalidate: 60, // Revalida a cada 60 segundos
     }
 }

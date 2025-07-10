@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { urlFor } from '@/lib/sanity';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Heart, ShoppingBag } from 'lucide-react';
@@ -36,7 +37,7 @@ const ProductCard = ({ product, viewMode = 'grid' }) => {
       <Card className="product-card overflow-hidden shadow-lg w-full border-tan/20 hover:shadow-xl">
         <Link to={`/produto/${product.id}`} className="flex flex-col sm:flex-row">
           <div className="w-full sm:w-48 h-48 sm:h-auto relative overflow-hidden">
-            <img  alt={product.name} className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" src={product.mainImage} />
+                    <img alt={product.name} className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" src={urlFor(product.mainImage).width(500).url()} />
             <Button variant="ghost" size="icon" onClick={handleWishlist} className="absolute top-2 right-2 h-8 w-8 bg-white/80 rounded-full hover:bg-white">
               <Heart className="h-4 w-4 text-gray-600 hover:text-carmine" />
             </Button>
@@ -101,7 +102,7 @@ const ProductCard = ({ product, viewMode = 'grid' }) => {
             ) : (
               <motion.img
                 key="image"
-                src={product.mainImage}
+                                  src={urlFor(product.mainImage).width(500).url()}
                 alt={product.name}
                 className="w-full h-full object-cover"
                 initial={{ opacity: 0 }}

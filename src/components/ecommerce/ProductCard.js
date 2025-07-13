@@ -13,7 +13,7 @@ export default function ProductCard({ product }) {
     return (
         <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
             <Link href={`/produto/${product.slug.current}`}>
-                <div className="relative aspect-square">
+                <a className="relative aspect-square block">
                     {product.images && product.images[0] && (
                         <img
                             src={product.images?.[0]}
@@ -35,7 +35,7 @@ export default function ProductCard({ product }) {
                             <span className="text-white font-bold text-lg">ESGOTADO</span>
                         </div>
                     )}
-                </div>
+                </a>
             </Link>
 
             <div className="p-4">
@@ -60,14 +60,13 @@ export default function ProductCard({ product }) {
                         )}
                     </div>
 
-                    <Link
-                        href={`/produto/${product.slug.current}`}
-                        className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded transition-colors duration-200"
-                    >
-                        Ver Detalhes
+                    <Link href={`/produto/${product.slug.current}`}>
+                        <a className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded transition-colors duration-200">
+                            Ver Detalhes
+                        </a>
                     </Link>
                 </div>
             </div>
         </div>
-    )
+    );
 }

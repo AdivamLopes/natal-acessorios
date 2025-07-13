@@ -1,5 +1,6 @@
+'use client';
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import { ArrowRight, Shield, Truck, Gem, Star } from 'lucide-react';

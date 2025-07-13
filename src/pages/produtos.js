@@ -1,3 +1,4 @@
+'use client';
 import { useState, useEffect } from 'react'
 import { client } from '../lib/sanity'
 import { PRODUCTS_QUERY, CATEGORIES_QUERY } from '../lib/queries'
@@ -28,7 +29,7 @@ export default function ProdutosPage({ products, categories }) {
                 filtered.sort((a, b) => a.name.localeCompare(b.name))
                 break
             default: // newest
-                // já vem ordenado por data de criação
+                // jÃ¡ vem ordenado por data de criaÃ§Ã£o
                 break
         }
 
@@ -69,8 +70,8 @@ export default function ProdutosPage({ products, categories }) {
                         className="border rounded px-3 py-2"
                     >
                         <option value="newest">Mais recentes</option>
-                        <option value="price-low">Menor preço</option>
-                        <option value="price-high">Maior preço</option>
+                        <option value="price-low">Menor preÃ§o</option>
+                        <option value="price-high">Maior preÃ§o</option>
                         <option value="name">Nome A-Z</option>
                     </select>
                 </div>

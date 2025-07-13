@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
@@ -7,12 +8,17 @@ import { toast } from '@/components/ui/use-toast';
 import { User, Mail, Key, LogOut } from 'lucide-react';
 
 const Profile = () => {
-  const { user, login, logout, isAuthenticated } = useAuth();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
+    const auth = useAuth();
+    const user = auth?.user ?? null;
+    const login = auth?.login ?? (() => { });
+    const logout = auth?.logout ?? (() => { });
+    const isAuthenticated = auth?.isAuthenticated ?? false;
+
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+    });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

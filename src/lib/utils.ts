@@ -30,3 +30,7 @@ export const calculateInstallments = (price: number, maxInstallments = 12) => {
     }
     return installments;
 };
+
+export function cn(...classes: (string | undefined | false | null)[]) {
+    return classes.filter(Boolean).join(' ');
+}

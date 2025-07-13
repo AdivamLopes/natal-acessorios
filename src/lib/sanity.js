@@ -1,4 +1,4 @@
-// lib/sanity.js - Configuração do cliente Sanity
+// lib/sanity.js - ConfiguraÃ§Ã£o do cliente Sanity
 import { createClient } from 'next-sanity'
 import imageUrlBuilder from '@sanity/image-url'
 

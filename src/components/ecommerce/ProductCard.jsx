@@ -1,6 +1,7 @@
+'use client';
 import React, { useState } from 'react';
 import { urlFor } from '@/lib/sanity';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Heart, ShoppingBag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -32,49 +33,70 @@ const ProductCard = ({ product, viewMode = 'grid' }) => {
 
   const videoUrl = "https://videos.pexels.com/video-files/4834891/4834891-hd_1080_1920_25fps.mp4";
 
-  if (viewMode === 'list') {
-    return (
-      <Card className="product-card overflow-hidden shadow-lg w-full border-tan/20 hover:shadow-xl">
-        <Link to={`/produto/${product.id}`} className="flex flex-col sm:flex-row">
-          <div className="w-full sm:w-48 h-48 sm:h-auto relative overflow-hidden">
-                    <img alt={product.name} className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" src={urlFor(product.mainImage).width(500).url()} />
-            <Button variant="ghost" size="icon" onClick={handleWishlist} className="absolute top-2 right-2 h-8 w-8 bg-white/80 rounded-full hover:bg-white">
-              <Heart className="h-4 w-4 text-gray-600 hover:text-carmine" />
-            </Button>
-          </div>
-          
-          <div className="flex-1 p-4 flex flex-col justify-between">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2 hover:text-carmine transition-colors">
-                {product.name}
-              </h3>
-              <p className="text-gray-600 text-sm mb-3 line-clamp-2">
-                {product.description}
-              </p>
-              <div className="flex items-center gap-2 mb-3">
-                <div className="flex items-center">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className={`h-4 w-4 ${i < product.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
-                  ))}
-                </div>
-                <span className="text-sm text-gray-500">({product.reviews})</span>
-              </div>
-            </div>
-            
-            <div className="flex items-center justify-between mt-4">
-              <span className="text-2xl font-bold text-carmine">
-                R$ {product.price.toFixed(2)}
-              </span>
-              <Button onClick={handleAddToCart} size="sm" className="bg-carmine hover:bg-carmine-light text-white">
-                <ShoppingBag className="h-4 w-4 mr-2" />
-                Adicionar
-              </Button>
-            </div>
-          </div>
-        </Link>
-      </Card>
-    );
-  }
+    if (viewMode === 'list') {
+        return (
+            <Card className="product-card overflow-hidden shadow-lg w-full border-tan/20 hover:shadow-xl">
+                <Link href={`/produto/${product.id}`}>
+                    <div className="flex flex-col sm:flex-row cursor-pointer">
+                        <div className="w-full sm:w-48 h-48 sm:h-auto relative overflow-hidden">
+                            <img
+                                alt={product.name}
+                                className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                                src={urlFor(product.mainImage).width(500).url()}
+                            />
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={handleWishlist}
+                                className="absolute top-2 right-2 h-8 w-8 bg-white/80 rounded-full hover:bg-white"
+                            >
+                                <Heart className="h-4 w-4 text-gray-600 hover:text-carmine" />
+                            </Button>
+                        </div>
+
+                        <div className="flex-1 p-4 flex flex-col justify-between">
+                            <div>
+                                <h3 className="text-lg font-semibold text-gray-800 mb-2 hover:text-carmine transition-colors">
+                                    {product.name}
+                                </h3>
+                                <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+                                    {product.description}
+                                </p>
+                                <div className="flex items-center gap-2 mb-3">
+                                    <div className="flex items-center">
+                                        {[...Array(5)].map((_, i) => (
+                                            <Star
+                                                key={i}
+                                                className={`h-4 w-4 ${i < product.rating
+                                                        ? 'text-yellow-400 fill-current'
+                                                        : 'text-gray-300'
+                                                    }`}
+                                            />
+                                        ))}
+                                    </div>
+                                    <span className="text-sm text-gray-500">({product.reviews})</span>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center justify-between mt-4">
+                                <span className="text-2xl font-bold text-carmine">
+                                    R$ {product.price.toFixed(2)}
+                                </span>
+                                <Button
+                                    onClick={handleAddToCart}
+                                    size="sm"
+                                    className="bg-carmine hover:bg-carmine-light text-white"
+                                >
+                                    <ShoppingBag className="h-4 w-4 mr-2" />
+                                    Adicionar
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                </Link>
+            </Card>
+        );
+
 
   return (
     <Card 

@@ -13,7 +13,7 @@ const SSLBadge = () => {
                         <div className="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full"></div>
                     </div>
                     <div>
-                        <div className="text-sm font-semibold text-gray-800">Conex„o Segura</div>
+                        <div className="text-sm font-semibold text-gray-800">Conex√£o Segura</div>
                         <div className="text-xs text-gray-600">Certificado SSL Verificado</div>
                     </div>
                 </div>

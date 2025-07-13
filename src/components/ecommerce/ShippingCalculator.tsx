@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import React, { useState } from 'react';
 import { Truck, MapPin } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
@@ -23,40 +24,34 @@ export const ShippingCalculator: React.FC = () => {
         setIsCalculating(true);
 
         try {
-            // Simular chamada para API de frete
             const response = await fetch('/api/shipping/calculate', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ cep, items: cart })
+                body: JSON.stringify({ cep, items: cart }),
             });
 
             const options = await response.json();
             setShippingOptions(options);
-        } catch (error) {
-            // Fallback com dados simulados
-            const simulatedOptions = [
+        } catch {
+            // Dados simulados em caso de erro
+            const simulatedOptions: ShippingOption[] = [
                 {
                     method: 'PAC',
-                    price: 12.50,
+                    price: 12.5,
                     days: '5-8 dias úteis',
-                    description: 'Entrega econômica dos Correios'
+                    description: 'Entrega econômica dos Correios',
                 },
                 {
                     method: 'SEDEX',
-                    price: 25.90,
+                    price: 25.9,
                     days: '2-3 dias úteis',
-                    description: 'Entrega expressa dos Correios'
-                }
+                    description: 'Entrega expressa dos Correios',
+                },
             ];
             setShippingOptions(simulatedOptions);
         } finally {
             setIsCalculating(false);
         }
-    };
-
-    const formatCep = (value: string) => {
-        const numbers = value.replace(/\D/g, '');
-        return numbers.replace(/(\d{5})(\d{3})/, '$1-$2');
     };
 
     return (
@@ -66,6 +61,7 @@ export const ShippingCalculator: React.FC = () => {
                 Calcular Frete
             </h4>
 
+            {/* Campo de CEP e botão */}
             <div className="flex gap-2 mb-4">
                 <div className="flex-1 relative">
                     <MapPin size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -87,11 +83,15 @@ export const ShippingCalculator: React.FC = () => {
                 </button>
             </div>
 
+            {/* Opções de frete */}
             {shippingOptions.length > 0 && (
                 <div className="space-y-2">
                     <h5 className="font-medium text-gray-700">Opções de entrega:</h5>
                     {shippingOptions.map((option, index) => (
-                        <label key={index} className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                        <label
+                            key={index}
+                            className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50"
+                        >
                             <input
                                 type="radio"
                                 name="shipping"

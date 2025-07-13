@@ -7,7 +7,7 @@ import { ArrowRight, Shield, Truck, Gem, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ProductCard from '../components/ecommerce/ProductCard';
 import ProductCardSkeleton from '@/components/ProductCardSkeleton';
-import { getFeaturedProducts } from '../data/products';
+import { getFeaturedProducts } from '@/data/api';
 import Hero from '@/components/Hero';
 import ProductCarousel from '@/components/ProductCarousel';
 import Testimonials from '@/components/Testimonials';
@@ -16,20 +16,21 @@ const Home = () => {
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
-        const products = await getFeaturedProducts();
-        setFeaturedProducts(products);
-      } catch (error) {
-        console.error("Failed to fetch featured products:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProducts();
-  }, []);
+    useEffect(() => {
+        async function fetchProducts() {
+            try {
+                setLoading(true);
+                const products = await getFeaturedProducts();
+                setFeaturedProducts(products);
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchProducts();
+    }, []);
+
 
   const features = [
     { icon: Gem, title: "Design Único", description: "Peças atemporais e refinadas, criadas para mulheres fortes e autênticas." },

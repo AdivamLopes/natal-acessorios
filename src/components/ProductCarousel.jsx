@@ -5,7 +5,7 @@ import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { Button } from '@/components/ui/button';
-import { getFeaturedProducts } from '@/data/products';
+import { getFeaturedProducts } from '@/data/api';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const ProductCarousel = () => {
@@ -15,9 +15,14 @@ const ProductCarousel = () => {
   const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
 
-  useEffect(() => {
-    setProducts(getFeaturedProducts());
-  }, []);
+    useEffect(() => {
+        async function fetchProducts() {
+            const products = await getFeaturedProducts();
+            setProducts(products);
+        }
+        fetchProducts();
+    }, []);
+
 
   if (products.length === 0) return null;
 

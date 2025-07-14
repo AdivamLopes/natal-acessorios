@@ -1,16 +1,20 @@
 ﻿// app/layout.tsx
-'use client';
-
 import './globals.css';
-import { CartProvider } from '@/contexts/CartContext'; // ← importa o provider
+import { ReactNode } from 'react';
+import { Providers } from './providers';
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export const metadata = {
+    title: 'Natal Acessórios',
+    description: 'Loja de acessórios em Natal',
+};
+
+export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="pt-BR">
             <body>
-                <CartProvider>
+                <Providers>
                     {children}
-                </CartProvider>
+                </Providers>
             </body>
         </html>
     );

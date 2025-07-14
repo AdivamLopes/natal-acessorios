@@ -1,7 +1,8 @@
 import React from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Helmet } from 'react-helmet';
 import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/contexts/CartContext';
@@ -10,13 +11,14 @@ import { toast } from '@/components/ui/use-toast';
 const Cart = () => {
     const { items, removeFromCart, updateQuantity, getCartTotal, clearCart } = useCart();
 
+    const subtotal = getCartTotal();
+    const shipping = subtotal >= 150 ? 0 : 15;
+    const total = subtotal + shipping;
+
     const handleQuantityChange = (productId, newQuantity) => {
         if (newQuantity < 1) {
             removeFromCart(productId);
-            toast({
-                title: "Produto removido do carrinho",
-                description: "O item foi removido com sucesso."
-            });
+            toast({ title: "Produto removido", description: "Item removido do carrinho." });
         } else {
             updateQuantity(productId, newQuantity);
         }
@@ -24,47 +26,31 @@ const Cart = () => {
 
     const handleRemoveItem = (productId, productName) => {
         removeFromCart(productId);
-        toast({
-            title: "Produto removido",
-            description: `${productName} foi removido do carrinho.`
-        });
+        toast({ title: "Produto removido", description: `${productName} foi removido.` });
     };
 
     const handleClearCart = () => {
         clearCart();
-        toast({
-            title: "Carrinho limpo",
-            description: "Todos os itens foram removidos do carrinho."
-        });
+        toast({ title: "Carrinho limpo", description: "Todos os itens foram removidos." });
     };
 
     if (items.length === 0) {
         return (
             <div className="min-h-screen py-8">
-                <Helmet>
+                <Head>
                     <title>Carrinho - Natal Acessórios</title>
                     <meta name="description" content="Seu carrinho de compras na Natal Acessórios" />
-                </Helmet>
+                </Head>
 
                 <div className="container mx-auto px-4">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-center py-16"
-                    >
+                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center py-16">
                         <div className="text-8xl mb-6">🛍️</div>
-                        <h1 className="text-3xl font-display font-bold text-gray-800 mb-4">
-                            Seu carrinho está vazio
-                        </h1>
+                        <h1 className="text-3xl font-display font-bold text-gray-800 mb-4">Seu carrinho está vazio</h1>
                         <p className="text-xl text-gray-600 mb-8 max-w-md mx-auto">
                             Que tal explorar nossa coleção e encontrar peças incríveis?
                         </p>
-                        <Link href="/produtos" passHref>
-                            <Button
-                                as="a"
-                                size="lg"
-                                className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-8 py-4"
-                            >
+                        <Link href="/produtos">
+                            <Button size="lg" className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-8 py-4">
                                 <ShoppingBag className="h-5 w-5 mr-2" />
                                 Explorar Produtos
                             </Button>
@@ -77,12 +63,14 @@ const Cart = () => {
 
     return (
         <div className="min-h-screen py-8">
-            <Helmet>
+            <Head>
                 <title>Carrinho ({items.length} {items.length === 1 ? 'item' : 'itens'}) - Natal Acessórios</title>
-                <meta name="description" content="Revise seus itens selecionados e finalize sua compra na Natal Acessórios" />
-            </Helmet>
+                <meta name="description" content="Revise seus itens selecionados e finalize sua compra" />
+            </Head>
 
             <div className="container mx-auto px-4">
+                {/* o resto do seu código permanece quase igual, com as correções acima */}
+
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

@@ -1,6 +1,6 @@
 // pages/_app.tsx
 import type { AppProps } from 'next/app'
-import { CartProvider } from '@/contexts/CartContext' // ajuste o caminho conforme necessário
+import { CartProvider } from '@/contexts/CartContext' 
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (

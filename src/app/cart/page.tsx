@@ -1,5 +1,6 @@
+﻿'use client'; // como você usa hooks e estados, precisamos desse directive no topo
+
 import React from 'react';
-import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -8,7 +9,12 @@ import { Button } from '@/components/ui/button';
 import { useCart } from '@/contexts/CartContext';
 import { toast } from '@/components/ui/use-toast';
 
-const Cart = () => {
+export const metadata = {
+    title: 'Carrinho - Natal Acessórios',
+    description: 'Revise seus itens selecionados e finalize sua compra',
+};
+
+export default function CartPage() {
     const { items, removeFromCart, updateQuantity, getCartTotal, clearCart } = useCart();
 
     const subtotal = getCartTotal();
@@ -37,11 +43,6 @@ const Cart = () => {
     if (items.length === 0) {
         return (
             <div className="min-h-screen py-8">
-                <Head>
-                    <title>Carrinho - Natal Acessórios</title>
-                    <meta name="description" content="Seu carrinho de compras na Natal Acessórios" />
-                </Head>
-
                 <div className="container mx-auto px-4">
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center py-16">
                         <div className="text-8xl mb-6">🛍️</div>
@@ -63,20 +64,9 @@ const Cart = () => {
 
     return (
         <div className="min-h-screen py-8">
-            <Head>
-                <title>Carrinho ({items.length} {items.length === 1 ? 'item' : 'itens'}) - Natal Acessórios</title>
-                <meta name="description" content="Revise seus itens selecionados e finalize sua compra" />
-            </Head>
-
             <div className="container mx-auto px-4">
-                {/* o resto do seu código permanece quase igual, com as correções acima */}
 
-                {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mb-8"
-                >
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
                     <Link href="/produtos" passHref>
                         <Button
                             as="a"
@@ -111,7 +101,6 @@ const Cart = () => {
                 </motion.div>
 
                 <div className="grid lg:grid-cols-3 gap-8">
-                    {/* Cart Items */}
                     <div className="lg:col-span-2 space-y-4">
                         {items.map((item, index) => (
                             <motion.div
@@ -122,17 +111,15 @@ const Cart = () => {
                                 className="glass-effect rounded-2xl p-6 hover:shadow-lg transition-shadow"
                             >
                                 <div className="flex flex-col sm:flex-row gap-4">
-                                    {/* Product Image */}
-                                    <div className="w-full sm:w-24 h-48 sm:h-24 rounded-lg overflow-hidden bg-white">
+                                    <div className="relative w-full sm:w-24 h-48 sm:h-24 rounded-lg overflow-hidden bg-white">
                                         <Image
                                             src={item.images[0]}
                                             alt={item.name}
-                                            layout="fill"
-                                            objectFit="cover"
+                                            fill
+                                            style={{ objectFit: 'cover' }}
                                         />
                                     </div>
 
-                                    {/* Product Details */}
                                     <div className="flex-1 space-y-2">
                                         <div className="flex flex-col sm:flex-row justify-between items-start gap-2">
                                             <div>
@@ -153,14 +140,15 @@ const Cart = () => {
                                             </div>
                                         </div>
 
-                                        {/* Quantity Controls */}
                                         <div className="flex items-center justify-between">
                                             <div className="flex items-center gap-3">
                                                 <span className="text-gray-700 font-medium">Quantidade:</span>
                                                 <div className="flex items-center border border-gray-300 rounded-lg">
                                                     <button
+                                                        aria-label={`Diminuir quantidade de ${item.name}`}
                                                         onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
-                                                        className="px-3 py-1 hover:bg-gray-100 transition-colors"
+                                                        className={`px-3 py-1 transition-colors ${item.quantity <= 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100'}`}
+                                                        disabled={item.quantity <= 1}
                                                     >
                                                         <Minus className="h-4 w-4" />
                                                     </button>
@@ -168,6 +156,7 @@ const Cart = () => {
                                                         {item.quantity}
                                                     </span>
                                                     <button
+                                                        aria-label={`Aumentar quantidade de ${item.name}`}
                                                         onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
                                                         className="px-3 py-1 hover:bg-gray-100 transition-colors"
                                                     >
@@ -181,6 +170,7 @@ const Cart = () => {
                                                 size="sm"
                                                 onClick={() => handleRemoveItem(item.id, item.name)}
                                                 className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                                                aria-label={`Remover ${item.name} do carrinho`}
                                             >
                                                 <Trash2 className="h-4 w-4" />
                                             </Button>
@@ -191,7 +181,6 @@ const Cart = () => {
                         ))}
                     </div>
 
-                    {/* Order Summary */}
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -206,28 +195,28 @@ const Cart = () => {
                             <div className="space-y-4 mb-6">
                                 <div className="flex justify-between text-gray-600">
                                     <span>Subtotal</span>
-                                    <span>R$ {getCartTotal().toFixed(2)}</span>
+                                    <span>R$ {subtotal.toFixed(2)}</span>
                                 </div>
                                 <div className="flex justify-between text-gray-600">
                                     <span>Frete</span>
                                     <span className="text-green-600">
-                                        {getCartTotal() >= 150 ? 'Grátis' : 'R$ 15,00'}
+                                        {subtotal >= 150 ? 'Grátis' : 'R$ 15,00'}
                                     </span>
                                 </div>
                                 <div className="border-t border-gray-200 pt-4">
                                     <div className="flex justify-between text-lg font-bold text-gray-800">
                                         <span>Total</span>
                                         <span className="gradient-text">
-                                            R$ {(getCartTotal() + (getCartTotal() >= 150 ? 0 : 15)).toFixed(2)}
+                                            R$ {total.toFixed(2)}
                                         </span>
                                     </div>
                                 </div>
                             </div>
 
-                            {getCartTotal() < 150 && (
+                            {subtotal < 150 && (
                                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
                                     <p className="text-blue-800 text-sm">
-                                        💡 Adicione mais R$ {(150 - getCartTotal()).toFixed(2)} e ganhe frete grátis!
+                                        💡 Adicione mais R$ {(150 - subtotal).toFixed(2)} e ganhe frete grátis!
                                     </p>
                                 </div>
                             )}
@@ -259,7 +248,4 @@ const Cart = () => {
             </div>
         </div>
     );
-};
-
-export default Cart;
-
+}

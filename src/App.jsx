@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { Head } from 'next/head';
 import { Toaster } from '@/components/ui/toaster';
 import { CartProvider } from '@/contexts/CartContext';

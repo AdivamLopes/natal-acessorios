@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/hooks/useAuth';
 import { toast } from '@/components/ui/use-toast';
+import Image from 'next/image';
 
 const menuItems = [
     { name: 'Início', path: '/' },
@@ -62,7 +63,13 @@ const Header = () => {
                 <div className="flex items-center justify-between h-24">
                     <Link href="/" className="flex items-center space-x-2">
                         <motion.div whileHover={{ scale: 1.05 }}>
-                            <img src={logo} alt="Natal Acessórios Logo" className="h-20 transition-all duration-300" />
+                            <Image
+                                src={logo}
+                                alt="Natal Acessórios Logo"
+                                width={80} // h-20 ≈ 80px
+                                height={80}
+                                className="transition-all duration-300"
+                            />
                         </motion.div>
                     </Link>
 
@@ -155,8 +162,20 @@ const Header = () => {
                                 </div>
                             ))}
                             <div className="col-span-2 grid grid-cols-2 gap-4">
-                                <img alt="Modelo com joias 1" className="rounded-lg object-cover w-full h-full" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d" />
-                                <img alt="Modelo com joias 2" className="rounded-lg object-cover w-full h-full" src="https://images.unsplash.com/photo-1559126204-56c6da39ecd1" />
+                                <Image
+                                    src="https://images.unsplash.com/photo-1611652022419-a9419f74343d"
+                                    alt="Modelo com joias 1"
+                                    width={500}
+                                    height={500}
+                                    className="rounded-lg object-cover w-full h-full"
+                                />
+                                <Image
+                                    src="https://images.unsplash.com/photo-1559126204-56c6da39ecd1"
+                                    alt="Modelo com joias 2"
+                                    width={500}
+                                    height={500}
+                                    className="rounded-lg object-cover w-full h-full"
+                                />
                             </div>
                         </div>
                     </motion.div>

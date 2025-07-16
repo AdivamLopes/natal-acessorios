@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Helmet } from 'react-helmet';
+import { Head } from 'next/head';
 import { ArrowRight, Shield, Truck, Gem, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ProductCard from '../components/ecommerce/ProductCard';
@@ -41,10 +41,10 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-[#fefefe]">
-      <Helmet>
+      <Head>
         <title>Natal Acessórios - Jóias Refinadas, Únicas e Atemporais</title>
         <meta name="description" content="Descubra a coleção da Natal Acessórios. A roupa veste, o acessório revela." />
-      </Helmet>
+      </Head>
 
       <Hero />
       <ProductCarousel />

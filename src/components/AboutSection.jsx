@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 const AboutSection = () => {
   return (
@@ -15,10 +16,17 @@ const AboutSection = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="relative aspect-square max-w-lg mx-auto">
-              <div className="absolute inset-8 border-4 border-tan rounded-xl"></div>
-              <img  alt="Mulher forte e elegante da família Natal usando joias" className="relative w-full h-full object-cover rounded-xl shadow-2xl z-10" src="https://images.unsplash.com/photo-1635175779836-e0db4f9a2c10" />
-            </div>
+                      <div className="relative aspect-square max-w-lg mx-auto">
+                          <div className="absolute inset-8 border-4 border-tan rounded-xl"></div>
+
+                          <Image
+                              alt="Mulher forte e elegante da família Natal usando joias"
+                              src="https://images.unsplash.com/photo-1635175779836-e0db4f9a2c10"
+                              fill
+                              className="object-cover rounded-xl shadow-2xl z-10"
+                              sizes="(max-width: 768px) 100vw, 512px"
+                          />
+                      </div>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, x: 50 }}

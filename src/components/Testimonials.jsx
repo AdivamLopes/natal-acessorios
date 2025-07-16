@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
+import Image from 'next/image';
 
 const testimonials = [
   {
@@ -59,8 +60,15 @@ const Testimonials = () => {
               <p className="text-gray-700 italic mb-6 flex-grow">
                 "{testimonial.quote}"
               </p>
-              <div className="flex flex-col items-center">
-                <img  alt={testimonial.alt} className="h-16 w-16 rounded-full object-cover mb-4 shadow-md" src={testimonial.avatar} />
+                  <div className="flex flex-col items-center">
+                      <Image
+                          src={testimonial.avatar}
+                          alt={testimonial.alt}
+                          width={64} // 16 * 4 (tailwind usa rems)
+                          height={64}
+                          className="rounded-full object-cover mb-4 shadow-md"
+                      />
+                
                 <span className="font-semibold text-carmine">{testimonial.name}</span>
                 <div className="flex mt-2">
                   {[...Array(testimonial.rating)].map((_, i) => (

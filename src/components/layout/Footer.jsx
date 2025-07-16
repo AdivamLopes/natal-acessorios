@@ -6,6 +6,7 @@ import { Instagram, Facebook, Twitter, Mail, Phone, MapPin } from 'lucide-react'
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
 import SSLBadge from '@/components/SSLBadge';
+import Image from 'next/image';
 
 const Footer = () => {
     const handleFeatureClick = () => {
@@ -29,10 +30,12 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                     <div className="space-y-4">
                         <Link href="/" className="inline-block">
-                            <img
+                            <Image
                                 src="https://storage.googleapis.com/hostinger-horizons-assets-prod/2beba3b7-4b9d-439e-8b64-51213a0e9ec8/93c3decb51596d56f05781d880e030df.png"
                                 alt="Natal Acessórios Logo com fundo transparente"
-                                className="h-20 bg-white p-2 rounded-lg"
+                                width={80} // equivalente aproximado de h-20 (20 * 4 = 80px)
+                                height={80}
+                                className="bg-white p-2 rounded-lg"
                             />
                         </Link>
                         <p className="text-white/80 text-sm leading-relaxed">

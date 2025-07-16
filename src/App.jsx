@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import { Head } from 'next/head';
 import { Toaster } from '@/components/ui/toaster';
 import { CartProvider } from '@/contexts/CartContext';
 import { AuthProvider } from '@/contexts/AuthContext';
@@ -20,10 +20,10 @@ function App() {
       <CartProvider>
         <Router>
           <div className="min-h-screen flex flex-col bg-[#fefefe]">
-            <Helmet>
+            <Head>
               <title>Natal Acessórios - Jóias Refinadas, Únicas e Atemporais</title>
               <meta name="description" content="Descubra a coleção da Natal Acessórios. Peças refinadas, únicas e atemporais para mulheres fortes. A roupa veste, o acessório revela." />
-            </Helmet>
+            </Head>
             
             <Header />
             

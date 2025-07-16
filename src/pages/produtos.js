@@ -9,36 +9,33 @@ export default function ProdutosPage({ products, categories }) {
     const [selectedCategory, setSelectedCategory] = useState('')
     const [sortBy, setSortBy] = useState('newest')
 
-    const filterAndSortProducts = () => {
-        let filtered = [...products]
+    const filterAndSortProducts = useCallback(() => {
+        let filtered = [...products];
 
-        // Filtrar por categoria (ajustado para Sanity)
         if (selectedCategory) {
-            filtered = filtered.filter(product => product.category?.name === selectedCategory)
+            filtered = filtered.filter(product => product.category?.name === selectedCategory);
         }
 
-        // Ordenar
         switch (sortBy) {
             case 'price-low':
-                filtered.sort((a, b) => (a.salePrice || a.price) - (b.salePrice || b.price))
-                break
+                filtered.sort((a, b) => (a.salePrice || a.price) - (b.salePrice || b.price));
+                break;
             case 'price-high':
-                filtered.sort((a, b) => (b.salePrice || b.price) - (a.salePrice || a.price))
-                break
+                filtered.sort((a, b) => (b.salePrice || b.price) - (a.salePrice || a.price));
+                break;
             case 'name':
-                filtered.sort((a, b) => a.name.localeCompare(b.name))
-                break
-            default: // newest
-                // já vem ordenado por data de criação
-                break
+                filtered.sort((a, b) => a.name.localeCompare(b.name));
+                break;
+            default:
+                break;
         }
 
-        setFilteredProducts(filtered)
-    }
+        setFilteredProducts(filtered);
+    }, [products, selectedCategory, sortBy]);
 
     useEffect(() => {
-        filterAndSortProducts()
-    }, [selectedCategory, sortBy])
+        filterAndSortProducts();
+    }, [filterAndSortProducts]);
 
     return (
         <div className="container mx-auto px-4 py-8">

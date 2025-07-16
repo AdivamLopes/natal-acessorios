@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useSearchParams, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Helmet } from 'react-helmet';
+import { Head } from 'next/head';
 import { Filter, Grid, List, SlidersHorizontal, X as XIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ProductCard from '@/components/ecommerce/ProductCard';
@@ -89,10 +89,10 @@ const Products = () => {
 
   return (
     <div className="min-h-screen py-8 bg-white">
-      <Helmet>
+      <Head>
         <title>Coleções - Natal Acessórios</title>
         <meta name="description" content="Explore nossa coleção completa de semijóias." />
-      </Helmet>
+      </Head>
 
       <div className="container mx-auto px-4">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">

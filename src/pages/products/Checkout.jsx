@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Helmet } from 'react-helmet';
+import { Head } from 'next/head';
 import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/contexts/CartContext';
@@ -77,10 +77,10 @@ const Checkout = () => {
 
   return (
     <div className="min-h-screen py-8">
-      <Helmet>
+      <Head>
         <title>Finalizar Compra - Natal Acessórios</title>
         <meta name="description" content="Finalize sua compra de forma segura na Natal Acessórios" />
-      </Helmet>
+      </Head>
 
       <div className="container mx-auto px-4">
         <motion.div

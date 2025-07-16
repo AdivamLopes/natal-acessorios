@@ -1,5 +1,6 @@
 import React from 'react';
 import { Shield } from 'lucide-react';
+import Image from 'next/image'
 
 const OrderSummary = ({ items, getCartTotal }) => {
   const shippingCost = getCartTotal() >= 150 ? 0 : 15;
@@ -15,7 +16,7 @@ const OrderSummary = ({ items, getCartTotal }) => {
         {items.map((item, index) => (
           <div key={`${item.id}-${index}`} className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-lg overflow-hidden bg-white">
-              <img
+                    <Image
                 src={item.images[0]}
                 alt={item.name}
                 className="w-full h-full object-cover"

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Helmet } from 'react-helmet';
+import { Head } from 'next/head';
 import { ArrowLeft, Heart, Share2, Star, Shield, Truck, Gem, XCircle, Ruler, Weight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/contexts/CartContext';
@@ -10,6 +10,7 @@ import { toast } from '@/components/ui/use-toast';
 import ProductCard from '@/components/ecommerce/ProductCard';
 import { Skeleton } from '@/components/ui/skeleton';
 import ProductCardSkeleton from '@/components/ProductCardSkeleton';
+import Image from 'next/image'
 
 const ProductHighlights = () => (
   <div className="bg-tan/10 rounded-2xl p-6 mt-8 space-y-4">
@@ -102,10 +103,10 @@ const ProductDetail = () => {
 
   return (
     <div className="min-h-screen py-8 bg-white">
-      <Helmet>
+      <Head>
         <title>{product.name} - Natal Acessórios</title>
         <meta name="description" content={product.description} />
-      </Helmet>
+      </Head>
 
       <div className="container mx-auto px-4">
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
@@ -117,7 +118,12 @@ const ProductDetail = () => {
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
           <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }}>
             <div className="aspect-square rounded-2xl overflow-hidden bg-tan/10 shadow-lg flex items-center justify-center">
-              <img alt={`Imagem principal do produto ${product.name}`} className="w-full h-full object-cover" src={product.mainImage} />
+                          <Image
+                              src={product.mainImage}
+                              alt={`Imagem principal do produto ${product.name}`}
+                              layout="fill"
+                              objectFit="cover"
+                          />
             </div>
           </motion.div>
 

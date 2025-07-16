@@ -7,6 +7,7 @@ import Autoplay from 'embla-carousel-autoplay';
 import { Button } from '@/components/ui/button';
 import { getFeaturedProducts } from '@/data/api';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
 
 const ProductCarousel = () => {
   const [products, setProducts] = useState([]);
@@ -51,7 +52,13 @@ const ProductCarousel = () => {
                 <div key={product.id} className="flex-grow-0 flex-shrink-0 basis-full sm:basis-1/2 lg:basis-1/3 p-4">
                   <Link to={`/produto/${product.id}`} className="block group">
                     <div className="relative overflow-hidden rounded-lg aspect-[4/5]">
-                      <img  alt={`Imagem do produto ${product.name}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src={product.mainImage} />
+                              <Image
+                                  src={product.mainImage}
+                                  alt={`Imagem do produto ${product.name}`}
+                                  width={500}
+                                  height={625} // Mantém proporção 4/5
+                                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                              />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                       <div className="absolute bottom-0 left-0 p-6 text-white">
                         <h3 className="text-2xl font-display font-bold">{product.name}</h3>

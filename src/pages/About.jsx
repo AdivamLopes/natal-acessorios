@@ -1,9 +1,10 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Head } from 'next/head';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Gem, Users, Heart } from 'lucide-react';
+import Image from 'next/image';
 
 const About = () => {
   const familyPhotos = [
@@ -17,10 +18,10 @@ const About = () => {
 
   return (
     <div className="bg-white">
-      <Helmet>
+      <Head>
         <title>Sobre Nós - Natal Acessórios</title>
         <meta name="description" content="Conheça a história da Natal Acessórios, uma marca inspirada na força e no legado das mulheres da família Natal." />
-      </Helmet>
+      </Head>
 
       <motion.section
         initial={{ opacity: 0 }}
@@ -79,7 +80,14 @@ const About = () => {
             >
               <div className="relative aspect-square max-w-md mx-auto">
                 <div className="absolute -top-4 -left-4 w-full h-full border-4 border-tan rounded-xl"></div>
-                <img  alt="Foto da matriarca da família Natal, uma mulher sorridente e elegante" className="relative w-full h-full object-cover rounded-xl shadow-2xl z-10" src="https://images.unsplash.com/photo-1593267720070-2ed9337829a7" />
+                              <Image
+                                  src="https://images.unsplash.com/photo-1593267720070-2ed9337829a7"
+                                  alt="Foto da matriarca da família Natal, uma mulher sorridente e elegante"
+                                  fill
+                                  className="object-cover rounded-xl"
+                                  sizes="(max-width: 768px) 100vw, 50vw"
+                                  priority
+                              />
               </div>
             </motion.div>
           </div>
@@ -112,7 +120,13 @@ const About = () => {
                 viewport={{ once: true }}
                 className="group relative overflow-hidden rounded-xl aspect-square"
               >
-                <img  alt={photo.alt} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src={photo.src} />
+                    <Image
+                        src={photo.src}
+                        alt={photo.alt}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                    />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </motion.div>
             ))}

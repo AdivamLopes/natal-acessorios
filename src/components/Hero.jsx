@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search } from 'lucide-react';
 import { useRouter } from 'next/navigation'; // ✅ CORRETO para Next.js
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 
 const categories = [
     {
@@ -53,7 +54,14 @@ const Hero = () => {
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: `url(${activeImage})` }}
                 >
-                    <img className="hidden" alt={activeDescription} src={activeImage} />
+                    <Image
+                        className="hidden"
+                        alt={activeDescription}
+                        src={activeImage}
+                        width={1}
+                        height={1}
+                        style={{ display: 'none' }}
+                    />
                 </motion.div>
             </AnimatePresence>
 

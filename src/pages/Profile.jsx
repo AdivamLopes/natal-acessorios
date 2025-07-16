@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet';
+import { Head } from 'next/head';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -45,10 +45,10 @@ const Profile = () => {
   if (isAuthenticated) {
     return (
       <div className="min-h-screen bg-tan/10 py-12">
-        <Helmet>
+        <Head>
           <title>Meu Perfil - Natal Acessórios</title>
           <meta name="description" content="Gerencie suas informações e veja seus pedidos na Natal Acessórios." />
-        </Helmet>
+        </Head>
         <div className="container mx-auto px-4 max-w-2xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -90,10 +90,10 @@ const Profile = () => {
 
   return (
     <div className="min-h-screen bg-tan/10 py-12 flex items-center">
-      <Helmet>
+      <Head>
         <title>Crie sua Conta - Natal Acessórios</title>
         <meta name="description" content="Crie sua conta para uma experiência de compra personalizada na Natal Acessórios." />
-      </Helmet>
+      </Head>
       <div className="container mx-auto px-4 max-w-md">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}

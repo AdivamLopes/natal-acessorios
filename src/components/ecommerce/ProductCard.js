@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function ProductCard({ product }) {
     const formatPrice = (price) => {
@@ -15,7 +16,7 @@ export default function ProductCard({ product }) {
             <Link href={`/produto/${product.slug.current}`}>
                 <a className="relative aspect-square block">
                     {product.images && product.images[0] && (
-                        <img
+                        <Image
                             src={product.images?.[0]}
                             alt={product.name}
                             fill

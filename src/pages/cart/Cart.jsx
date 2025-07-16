@@ -124,10 +124,11 @@ const Cart = () => {
                                 <div className="flex flex-col sm:flex-row gap-4">
                                     {/* Product Image */}
                                     <div className="w-full sm:w-24 h-48 sm:h-24 rounded-lg overflow-hidden bg-white">
-                                        <img
+                                        <Image
                                             src={item.images[0]}
                                             alt={item.name}
-                                            className="w-full h-full object-cover"
+                                            layout="fill"
+                                            objectFit="cover"
                                         />
                                     </div>
 
